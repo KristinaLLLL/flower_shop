@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<?php 
+session_start();
+header("Content-Type: text/html; charset=utf-8");
+include('server.php');
+mysqli_query($db, "SET NAMES 'utf8'");
+$email = $_SESSION['email'];
+$execItems = $db->query("SELECT surname, name FROM `users` WHERE email='$email'");
+while($infoItems = $execItems->fetch_array()){
+	$n=$infoItems['name'];
+	$sn=$infoItems['surname'];
+}
+?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Личный кабинет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
+    <!-- Google Font css -->
+    <link href="https://fonts.googleapis.com/css?family=Lily+Script+One" rel="stylesheet"> 
+
+    <!-- mobile menu css -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- nivo slider css -->
+    <link rel="stylesheet" href="css/nivo-slider.css">
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- slick css -->
+   <link rel="stylesheet" href="css/slick.css">
+    <!-- price slider css -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+     <!-- fancybox css -->
+    <link rel="stylesheet" href="css/jquery.fancybox.css">     
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- default css  -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <form method="post" action="account.html">
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+         <!-- Header Area Start -->
+        <header>
+           
+            <!-- Header Bottom Start -->
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-2 col-sm-5 col-5">
+                            <div class="logo">
+                                <a href="index.html"><img src="imj/logo.png" alt="logo-image"></a>
+                            </div>
+                        </div>
+                        <!-- Primary Vertical-Menu End -->
+                        <!-- Search Box Start -->
+                        <div class="col-xl-6 col-lg-7 d-none d-lg-block">
+                            <div class="middle-menu pull-right">
+                                <nav>
+                                    <ul class="middle-menu-list">
+                                        <li><a href="index.html">Главная</i></a>
+                                        </li>
+                                        <li><a href="#">Готовые букеты</a></li>                                        
+                                        <li><a href="#">Повод<i class="fa fa-angle-down"></i></a>
+                                            <!-- Home Version Dropdown Start -->
+                                            <ul class="ht-dropdown dropdown-style-two">
+                                                <li><a href="#">Повод 1</a>
+                                                    <!-- Start Two Step -->
+                                                    <ul class="ht-dropdown dropdown-style-two sub-menu">
+                                                        <li><a href="#">Повод 10</a>
+                                                            <!-- Start Three Step -->
+                                                            <ul class="ht-dropdown dropdown-style-two sub-menu">
+                                                                <li><a href="#">Повод 111</a></li>
+                                                                <li><a href="#">Повод 112</a></li>
+                                                                <li><a href="#">Повод 113</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="#">Повод 11</a></li>
+                                                        <li><a href="#">Повод 12</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Повод 2</a></li>
+                                                <li><a href="#">Повод 3</a></li>
+                                                <li><a href="#">Повод 4</a></li>
+                                            </ul>
+                                            <!-- Home Version Dropdown End -->
+                                        </li>                                        
+                                        <li><a href="#">Собери букет сам!</a>
+                                        </li>
+                                        <li><a href="#">Акции</i></a>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Header Bottom End -->
+                        <!-- Search Box End -->
+                        <!-- Cartt Box Start -->
+                        <div class="col-lg-3 col-sm-7 col-7">
+                            <div class="cart-box text-right">
+                                <ul>
+                                    <li><a href="compare.html"><i class="fa fa-cog"></i></a>
+                                        <ul class="ht-dropdown">
+                                            <li><a href="login.html">Вход</a></li>
+                                            <li><a href="register.html">Регистрация</a></li>
+                                                                                       
+                                        </ul>
+                                    </li>                                    
+                                    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-basket"></i><span class="cart-counter">2</span></a>
+                                        <ul class="ht-dropdown main-cart-box">
+                                            <li>
+                                                <!-- Cart Box Start -->
+                                                <div class="single-cart-box">
+                                                    <div class="cart-img">
+                                                        <a href="#"><img src="img/menu/1.jpg" alt="cart-image"></a>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h6><a href="product.html">Products Name</a></h6>
+                                                        <span>1 × $399.00</span>
+                                                    </div>
+                                                    <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
+                                                </div>
+                                                <!-- Cart Box End -->
+                                                <!-- Cart Box Start -->
+                                                <div class="single-cart-box">
+                                                    <div class="cart-img">
+                                                        <a href="#"><img src="img/menu/2.jpg" alt="cart-image"></a>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h6><a href="product.html">Products Name</a></h6>
+                                                        <span>2 × $299.00</span>
+                                                    </div>
+                                                    <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
+                                                </div>
+                                                <!-- Cart Box End -->
+                                                <!-- Cart Footer Inner Start -->
+                                                <div class="cart-footer fix">
+                                                    <h5>total :<span class="f-right">$698.00</span></h5>
+                                                    <div class="cart-actions">
+                                                        <a class="checkout" href="checkout.html">Checkout</a>
+                                                    </div>
+                                                </div>
+                                                <!-- Cart Footer Inner End -->
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Cartt Box End -->
+        </header>
+        
+        <!-- My Account Page Start Here -->
+        <div class="my-account white-bg pb-60">
+            <div class="container">
+                <div class="account-dashboard">
+                   <div class="dashboard-upper-info">
+                       <div class="row no-gutters align-items-center">
+                           <div class="col-lg-3 col-md-6">
+                               <div class="d-single-info">
+                                 <?php 
+                                   echo $sn;
+                                   echo " ";
+                                   echo $n;?>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-md-6">
+                               <div class="d-single-info">
+                                   <?php 
+                                   echo $email; ?>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-md-6">
+                               <div class="d-single-info">
+                                   
+                                   
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-md-6">
+                               <div class="d-single-info text-center">
+                                   <a class="view-cart" href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i>view cart</a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <!-- Nav tabs -->
+                            <ul class="nav flex-column dashboard-list" role="tablist">
+                                <li><a class="active" data-toggle="tab" href="#dashboard">Уведомления</a></li>
+                                <li><a data-toggle="tab" href="#">Заказы</a></li>
+                                <li><a data-toggle="tab" href="#">Чат</a></li>
+                                <li><a data-toggle="tab" href="#">Адреса</a></li>
+                                <li><a data-toggle="tab" href="#">Настройки аккаунта</a></li>
+                                <li><button class="newsletter-btn" href="index.php" name="exit">Выход</button></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- Tab panes -->
+                            <div class="tab-content dashboard-content mt-all-40">
+                                <div id="dashboard" class="tab-pane active">
+                                    <h3> Здесь вы будете видеть уведомления</h3>
+                                    
+                                </div>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- My Account Page End Here -->
+        
+
+         <footer class="off-white-bg">
+            <!-- Footer Top Start -->
+            <div class="footer-top pt-50 pb-60">
+                <div class="container">
+                                        
+                    <div class="row">
+                        <!-- Single Footer Start -->
+                        <div class="col-lg-4  col-md-7 col-sm-6">
+                            <div class="single-footer">
+                                <h3>Контакты</h3>
+                                <div class="footer-content">
+                                    <div class="loc-address">
+                                        <span><i class="fa fa-envelope-o"></i>E-mail : flower-shop@info.com</span>
+                                        <span><i class="fa fa-phone"></i>Phone: + 7 (960) 957-04-33</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- Row End -->
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Top End -->
+            <!-- Footer Bottom Start -->
+            <div class="footer-bottom off-white-bg2">
+                <div class="container">
+                    <div class="footer-bottom-content">
+                        
+                    </div>
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Bottom End -->
+        </footer>
+        <!-- Footer End -->
+    </div>
+    <!-- Wrapper End -->
+    
+</body>
+
+</html>
