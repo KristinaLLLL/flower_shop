@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+<?php include('server.php'); 
+    header("Content-Type: text/html; charset=utf-8");
+    mysqli_query($db, "SET NAMES 'utf8'"); ?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Корзина</title>
+    <meta name="description" content="Default Description">
+    <meta name="keywords" content="E-commerce" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
+    <!-- Google Font css -->
+    <link href="https://fonts.googleapis.com/css?family=Lily+Script+One" rel="stylesheet"> 
+
+    <!-- mobile menu css -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- nivo slider css -->
+    <link rel="stylesheet" href="css/nivo-slider.css">
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- slick css -->
+   <link rel="stylesheet" href="css/slick.css">
+    <!-- price slider css -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+     <!-- fancybox css -->
+    <link rel="stylesheet" href="css/jquery.fancybox.css">     
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- default css  -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- modernizr js -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+	
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <!-- Header Area Start -->
+        <header>
+            <!-- Header Top Start -->
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <!-- Header Top left Start -->                        
+                        <div class="col-lg-4 col-md-12 d-center">
+                            <div class="header-top-left">
+                                <img src="img/icon/call.png" alt="">Горячая линия : +7 xxx xxx xx xx
+                            </div>                        
+                        </div>
+                        <!-- Header Top left End -->
+                        <!-- Search Box Start -->                                        
+                        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                            <div class="search-box-view">
+                                <form action="#">
+                                    <input type="text" class="email" placeholder="Поиск" name="product">
+                                    <button type="submit" class="submit"></button>
+                                </form>
+                            </div>                                           
+                        </div>
+                        <!-- Search Box End --> 
+                        <!-- Header Top Right Start -->                                       
+                        <div class="col-lg-4 col-md-12">
+                            <div class="header-top-right">
+                                <ul class="header-list-menu f-right">
+                                </ul>
+                                <!-- Header-list-menu End -->
+                            </div>
+                        </div>
+                        <!-- Header Top Right End -->
+                    </div>
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Header Top End -->
+            <!-- Header Bottom Start -->
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-2 col-sm-5 col-5">
+                            <div class="logo">
+                                <a href="index.html"><img src="imj/logo.png" alt="logo-image"></a>
+                            </div>
+                        </div>
+                        <!-- Primary Vertical-Menu End -->
+                        <!-- Search Box Start -->
+                        <div class="col-xl-6 col-lg-7 d-none d-lg-block">
+                            <div class="middle-menu pull-right">
+                                <nav>
+                                    <ul class="middle-menu-list">
+                                        <li><a href="index.html">Главная</a>
+                                        </li>
+                                        <li><a href="#">Готовые букеты</a></li>                                        
+                                        <li><a href="#">Повод<i class="fa fa-angle-down"></i></a>
+                                           <!-- Home Version Dropdown Start -->
+                                            <ul class="ht-dropdown dropdown-style-two">
+                                                <li><a href="#">Повод 1</a>
+                                                    <!-- Start Two Step -->
+                                                    <ul class="ht-dropdown dropdown-style-two sub-menu">
+                                                        <li><a href="#">Повод 10</a>
+                                                            <!-- Start Three Step -->
+                                                            <ul class="ht-dropdown dropdown-style-two sub-menu">
+                                                                <li><a href="#">Повод 111</a></li>
+                                                                <li><a href="#">Повод 112</a></li>
+                                                                <li><a href="#">Повод 113</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="#">Повод 11</a></li>
+                                                        <li><a href="#">Повод 12</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Повод 2</a></li>
+                                                <li><a href="#">Повод 3</a></li>
+                                                <li><a href="#">Повод 4</a></li>
+                                            </ul>
+                                            <!-- Home Version Dropdown End -->
+                                        </li>                                                                               
+                                        <li><a href="#">Собери букет сам!</a></li>
+										<li><a href="#">Акции</i></a></li>                               
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Search Box End -->
+                        <!-- Cartt Box Start -->
+                        <div class="col-lg-3 col-sm-7 col-7">
+                            <div class="cart-box text-right">
+                                <ul>
+                                    <li><a href="compare.html"><i class="fa fa-cog"></i></a>
+                                        <ul class="ht-dropdown">
+                                            <li><a href="login.html">Вход</a></li>
+                                            <li><a href="register.html">Регистрация</a></li>
+                                            <li><a href="account.html">Личный кабинет</a></li>                                            
+                                        </ul>
+                                    </li>                                    
+                                    <li><a href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                                    <li><a href="cart.html"><i class="fa fa-shopping-basket"></i><span class="cart-counter">2</span></a>
+                                        <ul class="ht-dropdown main-cart-box">
+                                            <li>
+                                                <!-- Cart Box Start -->
+												
+                                                <div class="single-cart-box">
+                                                    <div class="cart-img">
+                                                        <a href="#"><img src="img/menu/1.jpg" alt="cart-image"></a>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h6><a href="product.html">Products Name</a></h6>
+                                                        <span>1 × $399.00</span>
+                                                    </div>
+                                                    <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
+                                                </div>
+                                                <!-- Cart Box End -->
+                                                <!-- Cart Box Start -->
+                                                <div class="single-cart-box">
+                                                    <div class="cart-img">
+                                                        <a href="#"><img src="img/menu/2.jpg" alt="cart-image"></a>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h6><a href="product.html">Products Name</a></h6>
+                                                        <span>2 × $299.00</span>
+                                                    </div>
+                                                    <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
+                                                </div>
+                                                <!-- Cart Box End -->
+                                                <!-- Cart Footer Inner Start -->
+                                                <div class="cart-footer fix">
+                                                    <h5>total :<span class="f-right">$698.00</span></h5>
+                                                    <div class="cart-actions">
+                                                        <a class="checkout" href="checkout.html">Checkout</a>
+                                                    </div>
+                                                </div>
+                                                <!-- Cart Footer Inner End -->
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row End -->
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Header Bottom End -->
+        </header
+        <!-- Header Area End -->     
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-area pt-60 pb-55 pt-sm-30 pb-sm-20">
+            <div class="container">
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li class="active"><a href="cart.html">Корзина</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Container End -->
+        </div>
+        <!-- Breadcrumb End -->
+        <!-- Cart Main Area Start -->
+        <div class="cart-main-area pb-80 pb-sm-50">
+            <div class="container">
+               <h2 class="text-capitalize sub-heading">Корзина</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Form Start -->
+                        <form action="#">
+						<?php					
+						mysqli_select_db($db, "cart");
+						$result = mysqli_query($db, "SELECT image, product, amount, price, total FROM cart")or die(mysqli_error($db));
+						$a=mysqli_fetch_array($result);
+						echo " <table class=table>";
+			
+						echo "<thead><tr><th><b>Изображение</b></th><th><b>Наименование товара</b></th><th><b>Количество</b></th><th><b>Цена</b></th><th><b>Всего</b></th><th><b>Убрать</b></th><tr></thead>";
+						
+						do{
+							$pole1=$a[0];
+							$pole2=$a[1];
+							$pole3=$a[2];
+							$pole4=$a[3];
+							$pole5=$a[4];
+							echo "<tbody><tr><td>$pole1</td><td>$pole2</td><td>$pole3</td><td>$pole4</td><td>$pole5</td>
+							<form method='post' action='delete.php'><td> <input type='image' name='id' src='imj\delete.JPG'/></td></form><tr></tbody>";
+						}while ($a=mysqli_fetch_array($result));
+						echo "</table>";
+						?>
+                            <!-- Table Content Start -->
+                            
+                            <!-- Table Content Start -->
+                            <div class="row">
+                               <!-- Cart Button Start -->
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="buttons-cart">
+                                        
+										<a href="cart.html">Обновить корзину</a>
+                                        <a href="index.html">Продолжить покупки</a>
+                                    </div>
+                                </div>
+                                <!-- Cart Button Start -->
+                                <!-- Cart Totals Start -->
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="cart_totals">
+                                        <h2>В корзине</h2>
+                                        <br />
+                                        <table>
+                                            <tbody>
+                                                
+                                                <tr class="order-total">
+                                                    <th>Итого</th>
+                                                    <td>
+                                                        <strong><span class="amount"><?php echo $pole4+$pole5 ?>руб.</span></strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="wc-proceed-to-checkout">
+                                            <a href="checkout.html">Перейти к оформлению заказа</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Cart Totals End -->
+                            </div>
+                            <!-- Row End -->
+                        </form>
+                        <!-- Form End -->
+                    </div>
+                </div>
+                 <!-- Row End -->
+            </div>
+        </div>
+        <!-- Cart Main Area End -->
+
+        <footer class="off-white-bg">
+            <!-- Footer Top Start -->
+            <div class="footer-top pt-50 pb-60">
+                <div class="container">    
+                    <div class="row">
+                        <!-- Single Footer Start -->
+                        <div class="col-lg-4  col-md-7 col-sm-6">
+                            <div class="single-footer">
+                                <h3>Контакты</h3>
+                                <div class="footer-content">
+                                    <div class="loc-address">
+                                        <span><i class="fa fa-map-marker"></i>Москва</span>
+                                        <span><i class="fa fa-envelope-o"></i>Напишите нам : flower-shop@info.com</span>
+                                        <span><i class="fa fa-phone"></i>Телефон: + 7 (960) 957-04-33</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row End -->
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Top End -->
+            <!-- Footer Bottom Start -->
+            <div class="footer-bottom off-white-bg2">
+                <div class="container">
+                    <div class="footer-bottom-content">
+                    </div>
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Bottom End -->
+        </footer>
+        <!-- Footer End -->
+    </div>
+    <!-- Wrapper End -->
+    <!-- jquery 3.12.4 -->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- mobile menu js  -->
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <!-- scroll-up js -->
+    <script src="js/jquery.scrollUp.js"></script>
+    <!-- owl-carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- price slider js -->
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <!-- nivo slider js -->
+    <script src="js/jquery.nivo.slider.js"></script>
+    <!-- fancybox js -->
+    <script src="js/jquery.fancybox.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- popper -->
+    <script src="js/popper.js"></script>
+    <!-- plugins -->
+    <script src="js/plugins.js"></script>
+    <!-- main js -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
