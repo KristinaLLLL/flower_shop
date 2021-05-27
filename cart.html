@@ -2,7 +2,7 @@
 <html>
 <?php include('server.php'); 
 
-    header("Content-Type: text/html; charset=utf-8");
+header("Content-Type: text/html; charset=utf-8");
     mysqli_query($db, "SET NAMES 'utf8'"); 
     $email = $_SESSION['email'];
     $execItems = $db->query("SELECT surname, name, id FROM users WHERE email='$email'");
@@ -12,6 +12,7 @@
     	$id=$infoItems['id'];
     }
     ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -55,6 +56,7 @@
 
 <body>
 	<form method="post" action="cart.html">
+
     <!-- Wrapper Start -->
     <div class="wrapper">
         <!-- Header Area Start -->
@@ -73,7 +75,9 @@
                         <!-- Search Box Start -->                                        
                         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                             <div class="search-box-view">
+
                                 
+
                             </div>                                           
                         </div>
                         <!-- Search Box End --> 
@@ -82,6 +86,7 @@
                             <div class="header-top-right">
                                 <button href="account.html" class="newsletter-btn" name="lk1">Личный кабинет</button>
                                 
+
                                 <!-- Header-list-menu End -->
                             </div>
                         </div>
@@ -222,6 +227,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- Form Start -->
+
                         
 						<?php					
 						mysqli_select_db($db, "cart_2");
@@ -254,6 +260,7 @@
                         	    $i++;
                         	}
                         }
+
 						echo "</table>";
 						?>
                             <!-- Table Content Start -->
@@ -280,7 +287,9 @@
                                                 <tr class="order-total">
                                                     <th>Итого</th>
                                                     <td>
+
                                                         <strong><span class="amount"><?php echo $summ; ?>руб.</span></strong>
+
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -293,7 +302,9 @@
                                 <!-- Cart Totals End -->
                             </div>
                             <!-- Row End -->
+
                         
+
                         <!-- Form End -->
                     </div>
                 </div>
@@ -367,7 +378,9 @@
     <script src="js/plugins.js"></script>
     <!-- main js -->
     <script src="js/main.js"></script>
+
     </from>
+
 </body>
 
 </html>
