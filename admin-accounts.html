@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<?php 
+session_start();
+header("Content-Type: text/html; charset=utf-8");
+include('server.php');
+mysqli_query($db, "SET NAMES 'utf8'");
+$email = $_SESSION['email'];
+$execItems = $db->query("SELECT surname, name FROM `users` WHERE email='$email'");
+while($infoItems = $execItems->fetch_array()){
+	$n=$infoItems['name'];
+	$sn=$infoItems['surname'];
+}
+?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Личный кабинет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
+    <!-- Google Font css -->
+    <link href="https://fonts.googleapis.com/css?family=Lily+Script+One" rel="stylesheet"> 
+
+    <!-- mobile menu css -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- nivo slider css -->
+    <link rel="stylesheet" href="css/nivo-slider.css">
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- slick css -->
+   <link rel="stylesheet" href="css/slick.css">
+    <!-- price slider css -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+     <!-- fancybox css -->
+    <link rel="stylesheet" href="css/jquery.fancybox.css">     
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- default css  -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <form method="post" action="account.html">
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+         <!-- Header Area Start -->
+        <header>
+        <!-- Header Bottom Start -->
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row">
+                        
+                        <!-- Primary Vertical-Menu End -->
+                        <!-- Search Box Start -->
+                        <div class="col-xl-3 col-lg-2 col-sm-5 col-5">
+                            <h3>   </h3>
+                            <h3>Панель управления</h3>
+                            <h3>   </h3>
+                        </div>
+                        <!-- Header Bottom End -->
+                        <!-- Search Box End -->
+                        <!-- Cartt Box Start -->
+                        
+                        <!-- Cartt Box End -->
+        </header>
+        
+        <!-- My Account Page Start Here -->
+        <div class="my-account white-bg pb-60">
+            <div class="container">
+                <div class="account-dashboard">
+                   
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <!-- Nav tabs -->
+                            <ul class="nav flex-column dashboard-list" role="tablist">
+                                <li><a data-toggle="tab" href="admin.html">Управление заказами</a></li>
+                                <li><a class="active" data-toggle="tab" href="admin-accounts.html">Список аккаунтов</a></li>
+                                <li><a data-toggle="tab" href="admin-add-product.html">Добавление товаров</a></li>
+                                <li><a data-toggle="tab" href="admin-del-product.html">Удаление товаров</a></li>
+                                <li><button class="newsletter-btn" href="index.php" name="exit">Выход</button></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- Tab panes -->
+                            <div class="tab-content dashboard-content mt-all-40">
+                                <div id="dashboard" class="tab-pane active">
+                                    <h3>Пользователи</h3>
+                                    <?php					
+						mysqli_select_db($db, "users");
+						$result = mysqli_query($db, "SELECT id, surname, name, email FROM users")or die(mysqli_error($db));
+						$a=mysqli_fetch_array($result);
+	
+						echo " <table class=table>";
+			            
+						echo "<thead><tr><th><b>ID</b></th><th><b>Имя клиента</b></th><th><b>Почта</b></th><th><b>Удалить</b></th><tr></thead>";
+						do{
+							$pole1=$a[0];
+							$pole2=$a[1];
+							$pole3=$a[2];
+							$pole4=$a[3];
+							echo "</td><td>$pole1</td><td>$pole2 $pole3</td><td>$pole4</td>
+							<form method='post' action='delete.php'><td> <button class='newsletter-btn' name='id' src='imj\delete.JPG'>Удалить</button></td></form><tr></tbody>";
+						}while ($a=mysqli_fetch_array($result));
+						echo "</table>";
+						?>
+                                </div>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- My Account Page End Here -->
+        
+
+         <footer class="off-white-bg">
+            <!-- Footer Top Start -->
+            <div class="footer-top pt-50 pb-60">
+                <div class="container">
+                                        
+                    <div class="row">
+                        <!-- Single Footer Start -->
+                        <div class="col-lg-4  col-md-7 col-sm-6">
+                            <div class="single-footer">
+                                <h3>Контакты</h3>
+                                <div class="footer-content">
+                                    <div class="loc-address">
+                                        <span><i class="fa fa-envelope-o"></i>E-mail : flower-shop@info.com</span>
+                                        <span><i class="fa fa-phone"></i>Phone: + 7 (960) 957-04-33</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- Row End -->
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Top End -->
+            <!-- Footer Bottom Start -->
+            <div class="footer-bottom off-white-bg2">
+                <div class="container">
+                    <div class="footer-bottom-content">
+                        
+                    </div>
+                </div>
+                <!-- Container End -->
+            </div>
+            <!-- Footer Bottom End -->
+        </footer>
+        <!-- Footer End -->
+    </div>
+    <!-- Wrapper End -->
+    
+</body>
+
+</html>
