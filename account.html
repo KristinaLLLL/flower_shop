@@ -6,10 +6,13 @@ header("Content-Type: text/html; charset=utf-8");
 include('server.php');
 mysqli_query($db, "SET NAMES 'utf8'");
 $email = $_SESSION['email'];
-$execItems = $db->query("SELECT surname, name FROM `users` WHERE email='$email'");
+
+$execItems = $db->query("SELECT surname, name, id FROM `users` WHERE email='$email'");
 while($infoItems = $execItems->fetch_array()){
 	$n=$infoItems['name'];
 	$sn=$infoItems['surname'];
+	$id=$infoItems['id'];
+
 }
 ?>
 <head>
@@ -112,9 +115,7 @@ while($infoItems = $execItems->fetch_array()){
                                 <ul>
                                     <li><a href="compare.html"><i class="fa fa-cog"></i></a>
                                         <ul class="ht-dropdown">
-                                            <li><a href="login.html">Вход</a></li>
-                                            <li><a href="register.html">Регистрация</a></li>
-                                                                                       
+
                                         </ul>
                                     </li>                                    
                                     <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
@@ -170,6 +171,9 @@ while($infoItems = $execItems->fetch_array()){
                        <div class="row no-gutters align-items-center">
                            <div class="col-lg-3 col-md-6">
                                <div class="d-single-info">
+
+                                    <p>Здравствуйте, </p>   
+
                                  <?php 
                                    echo $sn;
                                    echo " ";
@@ -178,19 +182,27 @@ while($infoItems = $execItems->fetch_array()){
                            </div>
                            <div class="col-lg-3 col-md-6">
                                <div class="d-single-info">
+
+                                   <p>Ваша почта: </p>  
+
                                    <?php 
                                    echo $email; ?>
                                </div>
                            </div>
                            <div class="col-lg-3 col-md-6">
                                <div class="d-single-info">
-                                   
+
+                                   <?php
+                                   echo $_SESSION['checkout']; ?>
+
                                    
                                </div>
                            </div>
                            <div class="col-lg-3 col-md-6">
                                <div class="d-single-info text-center">
-                                   <a class="view-cart" href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i>view cart</a>
+
+                                   <a class="view-cart" href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i>Корзина</a>
+
                                </div>
                            </div>
                        </div>
@@ -200,10 +212,12 @@ while($infoItems = $execItems->fetch_array()){
                             <!-- Nav tabs -->
                             <ul class="nav flex-column dashboard-list" role="tablist">
                                 <li><a class="active" data-toggle="tab" href="#dashboard">Уведомления</a></li>
-                                <li><a data-toggle="tab" href="#">Заказы</a></li>
+
+                                <li><a data-toggle="tab" href="cart.html">Заказы</a></li>
                                 <li><a data-toggle="tab" href="#">Чат</a></li>
                                 <li><a data-toggle="tab" href="#">Адреса</a></li>
-                                <li><a data-toggle="tab" href="#">Настройки аккаунта</a></li>
+                                <li><a data-toggle="tab" href="settings.html">Настройки аккаунта</a></li>
+
                                 <li><button class="newsletter-btn" href="index.php" name="exit">Выход</button></li>
                             </ul>
                         </div>
@@ -211,7 +225,30 @@ while($infoItems = $execItems->fetch_array()){
                             <!-- Tab panes -->
                             <div class="tab-content dashboard-content mt-all-40">
                                 <div id="dashboard" class="tab-pane active">
-                                    <h3> Здесь вы будете видеть уведомления</h3>
+
+                                    <form method="GET"action=" ">
+                                    
+                                    </form>
+
+                                        <?php					
+                    						mysqli_select_db($db, "notification");
+                    						$result = mysqli_query($db, "SELECT message, photo FROM notification")or die(mysqli_error($db));
+                    						
+                    						
+                    						echo " <table class=table>";
+                    			            
+                    						echo "<thead><tr><th><b>Уведомления</b></th></tr></thead>";
+                    						
+                    						do{
+                    							$pole1=$a[0];
+                    							$pole2=$a[1];
+                    							
+                    							echo "<tbody><tr><td class='product-thumbnail'>$pole1</td>
+                                                            </tr></tbody>";
+                    						}while ($a=mysqli_fetch_array($result));
+                    						echo "</table>";
+						                  ?>
+
                                     
                                 </div>
                                

@@ -1,8 +1,18 @@
 <!doctype html>
 <html>
 <?php include('server.php'); 
-    header("Content-Type: text/html; charset=utf-8");
-    mysqli_query($db, "SET NAMES 'utf8'"); ?>
+
+header("Content-Type: text/html; charset=utf-8");
+    mysqli_query($db, "SET NAMES 'utf8'"); 
+    $email = $_SESSION['email'];
+    $execItems = $db->query("SELECT surname, name, id FROM users WHERE email='$email'");
+    while($infoItems = $execItems->fetch_array()){
+    	$n=$infoItems['name'];
+    	$sn=$infoItems['surname'];
+    	$id=$infoItems['id'];
+    }
+    ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -45,7 +55,8 @@
 </head>
 
 <body>
-	
+	<form method="post" action="cart.html">
+
     <!-- Wrapper Start -->
     <div class="wrapper">
         <!-- Header Area Start -->
@@ -64,18 +75,18 @@
                         <!-- Search Box Start -->                                        
                         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                             <div class="search-box-view">
-                                <form action="#">
-                                    <input type="text" class="email" placeholder="Поиск" name="product">
-                                    <button type="submit" class="submit"></button>
-                                </form>
+
+                                
+
                             </div>                                           
                         </div>
                         <!-- Search Box End --> 
                         <!-- Header Top Right Start -->                                       
                         <div class="col-lg-4 col-md-12">
                             <div class="header-top-right">
-                                <ul class="header-list-menu f-right">
-                                </ul>
+                                <button href="account.html" class="newsletter-btn" name="lk1">Личный кабинет</button>
+                                
+
                                 <!-- Header-list-menu End -->
                             </div>
                         </div>
@@ -216,24 +227,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- Form Start -->
-                        <form action="#">
+
+                        
 						<?php					
-						mysqli_select_db($db, "cart");
-						$result = mysqli_query($db, "SELECT image, product, amount, price, total FROM cart")or die(mysqli_error($db));
-						$a=mysqli_fetch_array($result);
+						mysqli_select_db($db, "cart_2");
+						$execItems = $db->query("SELECT new_id FROM cart_2 WHERE id_user='$id'");
+						mysqli_select_db($db, "cart_1");
 						echo " <table class=table>";
-			
-						echo "<thead><tr><th><b>Изображение</b></th><th><b>Наименование товара</b></th><th><b>Количество</b></th><th><b>Цена</b></th><th><b>Всего</b></th><th><b>Убрать</b></th><tr></thead>";
-						
-						do{
-							$pole1=$a[0];
-							$pole2=$a[1];
-							$pole3=$a[2];
-							$pole4=$a[3];
-							$pole5=$a[4];
-							echo "<tbody><tr><td>$pole1</td><td>$pole2</td><td>$pole3</td><td>$pole4</td><td>$pole5</td>
-							<form method='post' action='delete.php'><td> <input type='image' name='id' src='imj\delete.JPG'/></td></form><tr></tbody>";
-						}while ($a=mysqli_fetch_array($result));
+						echo "<thead><tr><th><b>Изображение</b></th><th><b>Наименование товара</b></th><th><b>Цена</b></th><th><b>Убрать</b></th><tr></thead>";
+						while($infoItems = $execItems->fetch_array()){
+                        	$id_cart_1=$infoItems['new_id'];
+                        	$execItems1 = $db->query("SELECT id_pr, num FROM cart_1 WHERE id='$id_cart_1'");
+                        	$i=0;
+                        	
+                        	mysqli_select_db($db, "products");	
+                        	while($infoItems1 = $execItems1->fetch_array()){
+                        	    
+                        	    $id_products=$infoItems1['id_pr'];
+                        	    $nums=$infoItems1['num'];
+                        	    $execItems2 = $db->query("SELECT image, name, price FROM products WHERE id='$id_products'");
+                        	    while($infoItems2 = $execItems2->fetch_array()){
+                        	        $image=$infoItems2[image];
+                        	        $name=$infoItems2[name];
+                        	        $price=$infoItems2[price];
+                            	    
+                            	    echo "<tbody><tr><td class='product-thumbnail'><img src=$image style='height: 200px; width: 200px' alt='cart-image'/></td>
+                            	            <td>$name</td>
+                                            <td>$price</td>
+    							            <td><button class='newsletter-btn' value='$id_cart_1' name='del_id' >Удалить</button></td>
+    							          <tr></tbody>";
+                        	    }
+                        	    $i++;
+                        	}
+                        }
+
 						echo "</table>";
 						?>
                             <!-- Table Content Start -->
@@ -260,7 +287,9 @@
                                                 <tr class="order-total">
                                                     <th>Итого</th>
                                                     <td>
-                                                        <strong><span class="amount"><?php echo $pole4+$pole5 ?>руб.</span></strong>
+
+                                                        <strong><span class="amount"><?php echo $summ; ?>руб.</span></strong>
+
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -273,7 +302,9 @@
                                 <!-- Cart Totals End -->
                             </div>
                             <!-- Row End -->
-                        </form>
+
+                        
+
                         <!-- Form End -->
                     </div>
                 </div>
@@ -347,6 +378,9 @@
     <script src="js/plugins.js"></script>
     <!-- main js -->
     <script src="js/main.js"></script>
+
+    </from>
+
 </body>
 
 </html>
