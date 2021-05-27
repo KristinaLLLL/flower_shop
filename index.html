@@ -6,7 +6,13 @@ session_start();
 header("Content-Type: text/html; charset=utf-8");
 include('server.php');
 mysqli_query($db, "SET NAMES 'utf8'");
-
+$email = $_SESSION['email'];
+$execItems = $db->query("SELECT id, surname, name FROM `users` WHERE email='$email'");
+while($infoItems = $execItems->fetch_array()){
+    $id_user=$infoItems['id'];
+	$n=$infoItems['name'];
+	$sn=$infoItems['surname'];
+}
 $execItems = $db->query("SELECT image, name, price FROM `products` WHERE id='1'");
 while($infoItems = $execItems->fetch_array()){
 	$i1=$infoItems['image'];
@@ -20,7 +26,38 @@ while($infoItems = $execItems->fetch_array()){
 	$n2=$infoItems['name'];
 	$pr2=$infoItems['price'];
     }
+$execItems = $db->query("SELECT image, name, price FROM `products` WHERE id='3'");
+while($infoItems = $execItems->fetch_array()){
+	$i3=$infoItems['image'];
+	$n3=$infoItems['name'];
+	$pr3=$infoItems['price'];
+    }
+$execItems = $db->query("SELECT image, name, price FROM `products` WHERE id='4'");
+while($infoItems = $execItems->fetch_array()){
+	$i4=$infoItems['image'];
+	$n4=$infoItems['name'];
+	$pr4=$infoItems['price'];
+    }
+$execItems = $db->query("SELECT image, name, price FROM `products` WHERE id='5'");
+while($infoItems = $execItems->fetch_array()){
+	$i5=$infoItems['image'];
+	$n5=$infoItems['name'];
+	$pr5=$infoItems['price'];
+    }
+$execItems = $db->query("SELECT image, name, price FROM `products` WHERE id='6'");
+while($infoItems = $execItems->fetch_array()){
+	$i6=$infoItems['image'];
+	$n6=$infoItems['name'];
+	$pr6=$infoItems['price'];
+    }
 
+
+$execItems = $db->query("SELECT surname, name, id FROM `users` WHERE email='$email'");
+while($infoItems = $execItems->fetch_array()){
+	$n=$infoItems['name'];
+	$sn=$infoItems['surname'];
+	$id=$infoItems['id'];
+}
 ?>
 <head>
     <meta charset="utf-8">
@@ -62,7 +99,7 @@ while($infoItems = $execItems->fetch_array()){
     
 </head>
 <body>
-    <form  aсtion="index.php" method="post">
+    <form method="post" action="index.html">
             <div class="header-top">
                 <div class="container">
                     <div class="row">
@@ -76,10 +113,7 @@ while($infoItems = $execItems->fetch_array()){
                         <!-- Search Box Start -->                                        
                         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                             <div class="search-box-view">
-                                <form action="#">
-                                    <input type="text" class="email" placeholder="Поиск" name="product">
-                                    <button type="submit" class="submit"></button>
-                                </form>
+                                
                             </div>                                           
                         </div>
                         <!-- Search Box End --> 
@@ -310,9 +344,9 @@ while($infoItems = $execItems->fetch_array()){
                                                 <!-- Product Image Start -->
                                                 
                                         <?php echo" <div class='pro-img'>
-                                                    <a href='product.html'>
-                                                        <img class='primary-img' src=$i1 alt='single-product'>
-                                                        <img class='secondary-img' src=$i1 alt='single-product'>
+                                                    <a href='product1.html'>
+                                                        <img class='primary-img' src=$i1 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i1 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
                                                 </div>"?>
                                                 <!-- Product Image End -->
@@ -327,13 +361,7 @@ while($infoItems = $execItems->fetch_array()){
                                                     </div>                                
                                                     <h4><a href="#"><?php echo $n1; ?></a></h4>
                                                     <p><span class="price"><?php echo $pr1; echo " руб"; ?></span><del class="prev-price"><?php echo $pr1+2; echo " руб"; ?></del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="#" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="#" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <!-- Product Content End -->
                                             </div>
@@ -344,9 +372,9 @@ while($infoItems = $execItems->fetch_array()){
                                             <div class="single-product">
                                                 <!-- Product Image Start -->
                                                <?php echo" <div class='pro-img'>
-                                                    <a href='product.html'>
-                                                        <img class='primary-img' src=$i2 alt='single-product'>
-                                                        <img class='secondary-img' src=$i2 alt='single-product'>
+                                                    <a href='product2.html'>
+                                                        <img class='primary-img' src=$i2 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i2 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
                                                 </div>"?>
                                                 <!-- Product Image End -->
@@ -361,13 +389,6 @@ while($infoItems = $execItems->fetch_array()){
                                                     </div>                                
                                                     <h4><a href="#"><?php echo $n2; ?></a></h4>
                                                     <p><span class="price"><?php echo $pr2; echo " руб"; ?></span><del class="prev-price"><?php echo $pr2+5; echo " руб"; ?></del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="#" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="#" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- Product Content End -->
                                                 <span class="sticker-new">-20%</span>
@@ -378,12 +399,12 @@ while($infoItems = $execItems->fetch_array()){
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="single-product">
                                                 <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/5.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/6.jpg" alt="single-product">
+                                                <?php echo" <div class='pro-img'>
+                                                    <a href='product3.html'>
+                                                        <img class='primary-img' src=$i3 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i3 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
-                                                </div>
+                                                </div>"?>
                                                 <!-- Product Image End -->
                                                 <!-- Product Content Start -->
                                                 <div class="pro-content">
@@ -394,15 +415,9 @@ while($infoItems = $execItems->fetch_array()){
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                     </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$68.00</span><del class="prev-price">$70.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
+                                                    <h4><a href="#"><?php echo $n3; ?></a></h4>
+                                                    <p><span class="price"><?php echo $pr3; echo " руб"; ?></span><del class="prev-price"><?php echo $pr3+2; echo " руб"; ?></del></p>
+                                                    
                                                 </div>
                                                 <!-- Product Content End -->
                                             </div>
@@ -412,12 +427,12 @@ while($infoItems = $execItems->fetch_array()){
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="single-product">
                                                 <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/7.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/8.jpg" alt="single-product">
+                                                <?php echo" <div class='pro-img'>
+                                                    <a href='product4.html'>
+                                                        <img class='primary-img' src=$i4 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i4 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
-                                                </div>
+                                                </div>"?>
                                                 <!-- Product Image End -->
                                                 <!-- Product Content Start -->
                                                 <div class="pro-content">
@@ -428,15 +443,9 @@ while($infoItems = $execItems->fetch_array()){
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                     </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$25.00</span><del class="prev-price">$30.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
+                                                    <h4><a href="#"><?php echo $n4; ?></a></h4>
+                                                    <p><span class="price"><?php echo $pr4; echo " руб"; ?></span><del class="prev-price"><?php echo $pr4+2; echo " руб"; ?></del></p>
+                                                    
                                                 </div>
                                                 <!-- Product Content End -->
                                                 <span class="sticker-new">-10%</span>
@@ -447,12 +456,12 @@ while($infoItems = $execItems->fetch_array()){
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="single-product">
                                                 <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/2.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/1.jpg" alt="single-product">
+                                                <?php echo" <div class='pro-img'>
+                                                    <a href='product5.html'>
+                                                        <img class='primary-img' src=$i5 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i5 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
-                                                </div>
+                                                </div>"?>
                                                 <!-- Product Image End -->
                                                 <!-- Product Content Start -->
                                                 <div class="pro-content">
@@ -463,15 +472,9 @@ while($infoItems = $execItems->fetch_array()){
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                     </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
+                                                    <h4><a href="#"><?php echo $n5; ?></a></h4>
+                                                    <p><span class="price"><?php echo $pr5; echo " руб"; ?></span><del class="prev-price"><?php echo $pr5+2; echo " руб"; ?></del></p>
+                                                    
                                                 </div>
                                                 <!-- Product Content End -->
                                             </div>
@@ -481,12 +484,12 @@ while($infoItems = $execItems->fetch_array()){
                                         <div class="col-lg-4 col-sm-6">
                                             <div class="single-product">
                                                 <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/4.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/3.jpg" alt="single-product">
+                                                <?php echo" <div class='pro-img'>
+                                                    <a href='product6.html'>
+                                                        <img class='primary-img' src=$i6 style='height: 400px; width: 400px' alt='single-product'>
+                                                        <img class='secondary-img' src=$i6 style='height: 500px; width: 500px' alt='single-product'>
                                                     </a>
-                                                </div>
+                                                </div>"?>
                                                 <!-- Product Image End -->
                                                 <!-- Product Content Start -->
                                                 <div class="pro-content">
@@ -497,539 +500,14 @@ while($infoItems = $execItems->fetch_array()){
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                     </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$40.00</span><del class="prev-price">$50.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
+                                                    <h4><a href="#"><?php echo $n6; ?></a></h4>
+                                                    <p><span class="price"><?php echo $pr6; echo " руб"; ?></span><del class="prev-price"><?php echo $pr6+2; echo " руб"; ?></del></p>
+                                                    
                                                 </div>
                                                 <!-- Product Content End -->
                                             </div>
                                         </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/6.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/5.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$25.00</span><del class="prev-price">$29.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/7.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/8.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/1.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/2.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->                                        
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/3.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/4.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/5.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/6.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/7.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/8.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->                                       
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/5.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/4.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-32%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->  
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/6.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/5.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/4.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/3.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/2.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/1.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/3.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/2.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-32%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->  
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/7.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/7.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/6.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/5.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-30%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/4.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/3.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                        <!-- Single Product Start -->                    
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="single-product">
-                                                <!-- Product Image Start -->
-                                                <div class="pro-img">
-                                                    <a href="product.html">
-                                                        <img class="primary-img" src="img/products/2.jpg" alt="single-product">
-                                                        <img class="secondary-img" src="img/products/1.jpg" alt="single-product">
-                                                    </a>
-                                                </div>
-                                                <!-- Product Image End -->
-                                                <!-- Product Content Start -->
-                                                <div class="pro-content">
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>                                
-                                                    <h4><a href="product.html">Products Name Here</a></h4>
-                                                    <p><span class="price">$30.00</span><del class="prev-price">$32.00</del></p>
-                                                    <div class="pro-actions">
-                                                        <div class="actions-secondary">
-                                                            <a href="wishlist.html" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            <a class="add-cart" href="cart.html" data-toggle="tooltip" title="Add to Cart">Add To Cart</a>
-                                                            <a href="compare.html" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-signal"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Product Content End -->
-                                                <span class="sticker-new">-32%</span>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->                    
+                                        
                                     </div>                                    
                                 </div>
                                 <!-- #grid view End -->
@@ -1079,7 +557,7 @@ while($infoItems = $execItems->fetch_array()){
         <!-- Footer End -->
     </div>
     <!-- Wrapper End -->
-   
+   </from>
 </body>
 
 </html>
